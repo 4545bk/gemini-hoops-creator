@@ -51,7 +51,7 @@ serve(async (req) => {
 
     // Send to Telegram for approval
     const telegramBotToken = Deno.env.get('TELEGRAM_BOT_TOKEN');
-    const telegramChatId = '-4723764803'; // Your Telegram group/channel ID
+    const telegramChatId = '-4705261885'; // Your Telegram group/channel ID
     
     const message = `
 🔔 *New Payment Submission*
