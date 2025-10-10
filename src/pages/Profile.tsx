@@ -245,7 +245,7 @@ const Profile = () => {
                         <div>
                           <p className="font-medium">{payment.amount} Birr</p>
                           <p className="text-sm text-muted-foreground">
-                            {new Date(payment.created_at).toLocaleDateString()}
+                            {new Date(payment.created_at).toLocaleString()}
                           </p>
                         </div>
                       </div>

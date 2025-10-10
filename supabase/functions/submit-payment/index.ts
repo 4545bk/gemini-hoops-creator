@@ -53,6 +53,14 @@ serve(async (req) => {
     const telegramBotToken = Deno.env.get('TELEGRAM_BOT_TOKEN');
     const telegramChatId = '-4705261885'; // Your Telegram group/channel ID
     
+    console.log('Telegram bot token exists:', !!telegramBotToken);
+    console.log('Sending to chat ID:', telegramChatId);
+    
+    if (!telegramBotToken) {
+      console.error('TELEGRAM_BOT_TOKEN not found in environment');
+      throw new Error('Telegram bot token not configured');
+    }
+    
     const message = `
 🔔 *New Payment Submission*
 
