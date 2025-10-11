@@ -1,15 +1,23 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Button } from '@/components/ui/button';
-import { Sparkles } from 'lucide-react';
+import { Sparkles, Zap, Shield, TrendingUp } from 'lucide-react';
+import beforePhoto1 from '@/assets/before-photo-1.jpg';
+import afterPhoto1 from '@/assets/after-photo-1.jpg';
+import beforePhoto2 from '@/assets/before-photo-2.jpg';
+import afterPhoto2 from '@/assets/after-photo-2.jpg';
+import beforePhoto3 from '@/assets/before-photo-3.jpg';
+import afterPhoto3 from '@/assets/after-photo-3.jpg';
+import beforePhoto4 from '@/assets/before-photo-4.jpg';
+import afterPhoto4 from '@/assets/after-photo-4.jpg';
 
 const ImageGeneratorBanner: React.FC = () => {
+  const navigate = useNavigate();
   const [currentText, setCurrentText] = useState('');
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const navigate = useNavigate();
   
-  const texts = ['creators.', 'editors.', 'artists.'];
+  const texts = ['creators.', 'editors.', 'dreamers.', 'artists.'];
 
   useEffect(() => {
     const typeSpeed = isDeleting ? 40 : 100;
@@ -34,6 +42,13 @@ const ImageGeneratorBanner: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, [currentText, currentIndex, isDeleting, texts]);
+
+  const beforeAfterPairs = [
+    { before: beforePhoto1, after: afterPhoto1, label: 'Basketball' },
+    { before: beforePhoto2, after: afterPhoto2, label: 'Graduation' },
+    { before: beforePhoto3, after: afterPhoto3, label: 'Wedding' },
+    { before: beforePhoto4, after: afterPhoto4, label: 'Celebrity' }
+  ];
 
   return (
     <>
@@ -61,29 +76,25 @@ const ImageGeneratorBanner: React.FC = () => {
           font-display: swap;
         }
 
-        .image-gen-banner,
-        .image-gen-banner * {
+        .image-banner * {
           box-sizing: border-box;
         }
         
-        .image-gen-banner {
-          margin: 0;
-          background-color: #212121;
-          background-image: url("https://www.yudiz.com/codepen/photography-banner/frame.png");
+        .image-banner {
+          background-color: hsl(var(--color-neutral-950));
           overflow-x: hidden;
           min-height: 100vh;
           width: 100%;
         }
 
-        .image-gen-banner *::selection {
-          background-color: rgba(241, 231, 40, 0.2);
-          color: #ffffff;
+        .image-banner *::selection {
+          background-color: hsl(var(--color-purple-400) / 0.3);
+          color: hsl(var(--foreground));
         }
 
-        .hero-section {
-          height: 100vh;
-          min-height: 780px;
-          padding: 0 0 0 30px;
+        .info-section {
+          min-height: 100vh;
+          padding: 80px 30px 80px 30px;
           display: flex;
           align-items: center;
           justify-content: flex-end;
@@ -93,11 +104,11 @@ const ImageGeneratorBanner: React.FC = () => {
           overflow: hidden;
         }
 
-        .hero-section::before {
+        .info-section::before {
           content: "";
           border-radius: 197.5px 0px;
           opacity: 0.4;
-          background: #f1e728;
+          background: hsl(var(--color-purple-500));
           filter: blur(162px);
           height: 35%;
           width: 55%;
@@ -108,36 +119,38 @@ const ImageGeneratorBanner: React.FC = () => {
           z-index: -1;
         }
 
-        .hero-left {
+        .left-part {
           padding: 20px 0 0;
           overflow: hidden;
         }
 
-        .hero-left h1 {
+        .left-part h1 {
           margin: 0;
-          color: #fff;
+          color: hsl(var(--foreground));
           font-family: "Extenda Trial 30 Deca";
-          font-size: clamp(100px, 18.5vw, 282px);
+          font-size: clamp(80px, 16vw, 240px);
           line-height: 0.75;
           font-weight: normal;
           font-style: normal;
           text-transform: uppercase;
         }
 
-        .hero-left h1 .text {
-          color: #f1e728;
+        .left-part h1 .text {
+          background: var(--gradient-accent);
+          -webkit-background-clip: text;
+          -webkit-text-fill-color: transparent;
+          background-clip: text;
           display: block;
-          height: 200px;
+          height: clamp(120px, 20vw, 180px);
         }
 
-        .hero-left h1 .d-flex {
+        .left-part h1 .d-flex {
           display: flex;
           align-items: center;
         }
 
-        .hero-left h1 .char {
+        .left-part h1 .char {
           transform: translateY(0);
-          transition: transform 0.5s;
           animation: slideUp 0.3s ease-out forwards;
         }
 
@@ -150,10 +163,10 @@ const ImageGeneratorBanner: React.FC = () => {
           }
         }
 
-        .hero-left p {
+        .left-part p {
           width: 72%;
           margin: 20px 0 0;
-          color: #fff;
+          color: hsl(var(--foreground-secondary));
           font-size: 16px;
           font-style: normal;
           font-weight: normal;
@@ -162,118 +175,7 @@ const ImageGeneratorBanner: React.FC = () => {
           opacity: 0.8;
         }
 
-        .cta-button {
-          margin: 40px 0 0;
-          padding: 0;
-          border: 0;
-          font-size: 56px;
-          line-height: 1;
-          color: #f1f1f1;
-          letter-spacing: 0.25px;
-          text-transform: uppercase;
-          font-family: "Extenda Trial 20 Micro";
-          font-weight: 300;
-          font-style: normal;
-          display: inline-flex;
-          align-items: center;
-          gap: 28px;
-          position: relative;
-          text-decoration: none;
-          cursor: pointer;
-          background: transparent;
-        }
-
-        .cta-button .linktext {
-          position: relative;
-          overflow: hidden;
-          display: inline-block;
-        }
-
-        .cta-button .linktext::before {
-          position: absolute;
-          content: "";
-          left: 0;
-          bottom: 6px;
-          width: 100%;
-          height: 3px;
-          background-color: #ffffff;
-          transform: scaleX(1);
-          transition: transform 250ms ease-in-out;
-          transform-origin: 0 0;
-        }
-
-        .cta-button:hover .linktext:before {
-          transform: scaleX(0);
-          transform-origin: 100% 100%;
-        }
-
-        .cta-button .arrow {
-          height: 36px;
-          width: 36px;
-          top: -5px;
-          display: inline-block;
-          position: relative;
-          overflow: hidden;
-        }
-
-        .cta-button .arrow::before,
-        .cta-button .arrow::after {
-          position: absolute;
-          content: "";
-          background-color: #f1e728;
-          transition: all ease-in-out 0.35s;
-          transform-origin: 0 0;
-          border-radius: 30px;
-        }
-
-        .cta-button .arrow::before {
-          height: 2px;
-          width: 100%;
-          top: 0;
-          right: 0;
-        }
-
-        .cta-button .arrow::after {
-          width: 2px;
-          height: 100%;
-          top: 0;
-          right: 0;
-        }
-
-        .cta-button:hover .arrow::before {
-          width: 65%;
-        }
-
-        .cta-button:hover .arrow::after {
-          height: 65%;
-        }
-
-        .cta-button .arrow span {
-          background-color: #f1e728;
-          height: 2px;
-          width: 100%;
-          display: inline-block;
-          transform: rotate(-45deg) translate(-3px, -1px);
-          transform-origin: right top;
-          border-radius: 30px;
-          position: relative;
-          transition: all ease-in-out 0.35s;
-          position: absolute;
-          top: 0;
-          left: 0;
-        }
-
-        .cta-button .arrow span::before {
-          background-color: #f1e728;
-          content: "";
-          height: 100%;
-          width: 15px;
-          left: -15px;
-          top: 0;
-          position: absolute;
-        }
-
-        .hero-right {
+        .right-part {
           background-color: transparent;
           height: 588px;
           width: 588px;
@@ -285,11 +187,11 @@ const ImageGeneratorBanner: React.FC = () => {
           flex-shrink: 0;
         }
 
-        .hero-right::before {
+        .right-part::before {
           content: "";
           border-radius: 197.5px 0px;
           opacity: 0.4;
-          background: #f1e728;
+          background: hsl(var(--color-orange-500));
           filter: blur(112px);
           height: 35%;
           width: 55%;
@@ -300,7 +202,7 @@ const ImageGeneratorBanner: React.FC = () => {
           z-index: -1;
         }
 
-        .hero-right .d-flex {
+        .right-part .d-flex {
           height: 100%;
           gap: 24px;
           display: flex;
@@ -320,12 +222,12 @@ const ImageGeneratorBanner: React.FC = () => {
           display: flex;
           align-items: center;
           justify-content: center;
-          border: 1px solid #555555;
+          border: 1px solid hsl(var(--border));
           font-size: 16px;
           font-style: normal;
           font-weight: 400;
           line-height: 32px;
-          color: #ffffff;
+          color: hsl(var(--foreground));
           font-family: "monument_extendedregular";
           border-radius: 120px;
           position: absolute;
@@ -385,6 +287,9 @@ const ImageGeneratorBanner: React.FC = () => {
           2.5%, 12.5% { left: calc(100% / 3); }
           15%, 25% { left: calc((100% / 3) * 2); top: 0; }
           27.5% { left: calc((100% / 3) * 2); top: calc(100% / 3); }
+          29.5% { left: calc((100% / 3) * 2); top: calc(100% / 3); width: calc((100% / 3) - 16px); }
+          31.5%, 33.5% { left: calc(100% / 3); width: 100%; }
+          35.5%, 37.5% { left: calc((100% / 3) * 2); top: calc(100% / 3); width: calc((100% / 3) - 16px); }
           40%, 50% { left: calc((100% / 3) * 2); top: calc((100% / 3) * 2); }
           52.5%, 62.5% { left: calc(100% / 3); }
           65%, 75% { left: 0; top: calc((100% / 3) * 2); }
@@ -394,6 +299,9 @@ const ImageGeneratorBanner: React.FC = () => {
         @keyframes box-2 {
           0%, 90%, 100% { left: calc(100% / 3); }
           2.5%, 12.5% { left: calc((100% / 3) * 2); top: 0; }
+          15%, 17% { left: calc((100% / 3) * 2); top: calc(100% / 3); width: calc((100% / 3) - 16px); }
+          19%, 21% { left: calc(100% / 3); top: calc(100% / 3); width: 100%; }
+          23%, 25% { left: calc((100% / 3) * 2); top: calc(100% / 3); width: calc((100% / 3) - 16px); }
           27.5%, 37.5% { left: calc((100% / 3) * 2); top: calc((100% / 3) * 2); }
           40%, 50% { left: calc(100% / 3); top: calc((100% / 3) * 2); }
           52.5%, 62.5% { left: 0; top: calc((100% / 3) * 2); }
@@ -403,6 +311,9 @@ const ImageGeneratorBanner: React.FC = () => {
 
         @keyframes box-3 {
           0%, 90%, 100% { left: calc((100% / 3) * 2); }
+          2.5%, 12.5% { left: calc((100% / 3) * 2); top: calc(100% / 3); }
+          4.5%, 10.5% { left: calc((100% / 3) * 2); top: calc(100% / 3); width: calc((100% / 3) - 16px); }
+          6.5%, 8.5% { left: calc(100% / 3); top: calc(100% / 3); width: 100%; }
           15%, 25% { left: calc((100% / 3) * 2); top: calc((100% / 3) * 2); }
           27.5%, 37.5% { left: calc(100% / 3); top: calc((100% / 3) * 2); }
           40%, 50% { left: 0; top: calc((100% / 3) * 2); }
@@ -416,13 +327,15 @@ const ImageGeneratorBanner: React.FC = () => {
           2.5%, 12.5% { left: 0; top: 0; }
           15%, 25% { left: calc(100% / 3); top: 0; }
           27.5%, 37.5% { left: calc((100% / 3) * 2); top: 0; }
+          40%, 42%, 48%, 50% { left: calc((100% / 3) * 2); top: calc(100% / 3); width: calc((100% / 3) - 16px); }
+          44%, 46% { left: calc(100% / 3); top: calc(100% / 3); width: 100%; }
           52.5%, 62.5% { left: calc((100% / 3) * 2); top: calc((100% / 3) * 2); }
           65%, 75% { left: calc(100% / 3); top: calc((100% / 3) * 2); }
           77.5%, 87.5% { left: 0; top: calc((100% / 3) * 2); }
         }
 
         @keyframes box-5 {
-          0%, 90%, 100% { left: calc((100% / 3) * 2); top: calc(100% / 3); }
+          0%, 90%, 92%, 98%, 100% { left: calc((100% / 3) * 2); top: calc(100% / 3); width: calc((100% / 3) - 16px); }
           2.5%, 12.5% { left: calc((100% / 3) * 2); top: calc((100% / 3) * 2); }
           15%, 25% { left: calc(100% / 3); top: calc((100% / 3) * 2); }
           27.5%, 37.5% { left: 0; top: calc((100% / 3) * 2); }
@@ -430,6 +343,7 @@ const ImageGeneratorBanner: React.FC = () => {
           52.5%, 62.5% { left: 0; top: 0; }
           65%, 75% { left: calc(100% / 3); top: 0; }
           77.5%, 87.5% { left: calc((100% / 3) * 2); top: 0; }
+          94%, 96% { left: calc(100% / 3); top: calc(100% / 3); width: 100%; }
         }
 
         @keyframes box-6 {
@@ -438,6 +352,8 @@ const ImageGeneratorBanner: React.FC = () => {
           15%, 25% { left: 0; top: 0; }
           27.5%, 37.5% { left: calc(100% / 3); top: 0; }
           40%, 50% { left: calc((100% / 3) * 2); top: 0; }
+          52.5%, 54.5%, 60.5%, 62.5% { left: calc((100% / 3) * 2); top: calc(100% / 3); width: calc((100% / 3) - 16px); }
+          56.5%, 58.5% { left: calc(100% / 3); top: calc(100% / 3); width: 100%; }
           65%, 75% { left: calc((100% / 3) * 2); top: calc((100% / 3) * 2); }
           77.5%, 87.5% { left: calc((100% / 3) * 2); top: calc((100% / 3) * 2); }
         }
@@ -449,6 +365,8 @@ const ImageGeneratorBanner: React.FC = () => {
           27.5%, 37.5% { left: 0; top: 0; }
           40%, 50% { left: calc(100% / 3); top: 0; }
           52.5%, 62.5% { left: calc((100% / 3) * 2); top: 0; }
+          65%, 67%, 73%, 75% { left: calc((100% / 3) * 2); top: calc(100% / 3); width: calc((100% / 3) - 16px); }
+          69%, 71% { left: calc(100% / 3); top: calc(100% / 3); width: 100%; }
           77.5%, 87.5% { left: calc((100% / 3) * 2); top: calc((100% / 3) * 2); }
         }
 
@@ -460,6 +378,8 @@ const ImageGeneratorBanner: React.FC = () => {
           40%, 50% { left: 0; top: 0; }
           52.5%, 62.5% { left: calc(100% / 3); top: 0; }
           65%, 75% { left: calc((100% / 3) * 2); top: 0; }
+          77.5%, 79.5%, 85.5%, 87.5% { left: calc((100% / 3) * 2); top: calc(100% / 3); width: calc((100% / 3) - 16px); border-radius: 100%; }
+          81.5%, 83.5% { left: calc(100% / 3); top: calc(100% / 3); width: 100%; }
         }
 
         .box span {
@@ -467,137 +387,85 @@ const ImageGeneratorBanner: React.FC = () => {
           display: block;
           opacity: 0.8;
           z-index: 5;
+          font-size: 12px;
+          text-transform: uppercase;
         }
 
-        .box:nth-child(1) span {
-          top: 43%;
-          left: -27px;
-          transform: translateY(-50%);
-        }
+        .box:nth-child(1) span { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .box:nth-child(3) span { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .box:nth-child(4) span { top: 50%; left: 50%; transform: translate(-50%, -50%); }
+        .box:nth-child(8) span { top: 50%; left: 50%; transform: translate(-50%, -50%); }
 
-        .box:nth-child(3) span {
-          left: -10px;
-          bottom: 2px;
-        }
-
-        .box:nth-child(4) span {
-          top: 50%;
-          left: 55%;
-          transform: translate(-50%, -50%);
-        }
-
-        .box:nth-child(8) span {
-          top: 50%;
-          transform: translate(-50%, -50%);
-          left: 15%;
-        }
-
-        .box .bg-img {
+        .box .ba-container {
           position: absolute;
           top: 0;
           left: 0;
+          width: 100%;
+          height: 100%;
           border-radius: 120px;
           overflow: hidden;
         }
 
-        .box .bg-img,
-        .box .bg-img img {
-          height: 100%;
+        .box .ba-container img {
           width: 100%;
-        }
-
-        .box .bg-img img {
-          max-width: 100%;
+          height: 100%;
           object-fit: cover;
           object-position: center center;
         }
 
-        @media screen and (max-width: 1199px) {
-          .hero-right {
-            height: 400px;
-            width: 400px;
-          }
-          .hero-right .d-flex {
-            gap: 20px;
-          }
-          .box {
-            height: 118px;
-            width: 118px;
-            font-size: 12px;
-          }
-          .hero-left p {
-            font-size: 14px;
-            line-height: 1.8;
-            width: 85%;
-          }
-          .hero-left h1 .text {
-            height: 132px;
-          }
-          .cta-button {
-            font-size: 48px;
-            gap: 24px;
-          }
-          .cta-button .arrow {
-            height: 28px;
-            width: 28px;
-          }
+        .box .before-img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 50%;
+          height: 100%;
+          overflow: hidden;
+          z-index: 2;
         }
 
-        @media screen and (max-width: 767px) {
-          .image-gen-banner {
-            overflow-x: hidden;
-          }
-          
-          .hero-section {
-            display: block;
-            padding: 0;
-            overflow: visible;
-            min-height: auto;
-            height: auto;
-          }
-          
-          .hero-left {
-            padding: 40px 16px 60px;
-            overflow: visible;
-          }
-          
-          .hero-right {
-            height: 334px;
-            width: 334px;
-            margin: 0 auto;
-            margin-right: auto;
-          }
-          
-          .hero-left h1 .text {
-            height: 88px;
-          }
-          
-          .hero-left p {
-            font-size: 12px;
-            width: 96%;
-          }
-          
-          .box {
-            height: 96px;
-            width: 96px;
-            font-size: 10px;
-          }
-          
-          .cta-button .arrow {
-            height: 24px;
-            width: 24px;
-          }
-          
-          .cta-button {
-            font-size: 42px;
-            gap: 20px;
-            margin-top: 24px;
-          }
+        .box .after-img {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 1;
         }
 
+        .box .ba-divider {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          width: 2px;
+          height: 100%;
+          background: hsl(var(--color-orange-500));
+          z-index: 3;
+          box-shadow: 0 0 10px hsl(var(--color-orange-500) / 0.5);
+        }
+
+        .box .ba-handle {
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          width: 30px;
+          height: 30px;
+          background: hsl(var(--color-orange-500));
+          border-radius: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 4;
+          box-shadow: 0 0 15px hsl(var(--color-orange-500) / 0.7);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          color: white;
+          font-size: 14px;
+          font-weight: bold;
+        }
+
+        /* Features Section */
         .features-section {
-          padding: 100px 30px;
-          background-color: #1a1a1a;
+          padding: 120px 30px;
+          background: hsl(var(--color-neutral-900));
           position: relative;
           overflow: hidden;
         }
@@ -606,7 +474,7 @@ const ImageGeneratorBanner: React.FC = () => {
           content: "";
           border-radius: 197.5px 0px;
           opacity: 0.3;
-          background: #f1e728;
+          background: hsl(var(--color-purple-500));
           filter: blur(140px);
           height: 40%;
           width: 40%;
@@ -620,71 +488,56 @@ const ImageGeneratorBanner: React.FC = () => {
           max-width: 1400px;
           margin: 0 auto;
           display: grid;
-          grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-          gap: 60px;
-          align-items: center;
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 40px;
         }
 
-        .features-content h2 {
-          color: #fff;
-          font-family: "Extenda Trial 30 Deca";
-          font-size: clamp(60px, 8vw, 120px);
-          line-height: 0.9;
-          margin: 0 0 30px;
-          text-transform: uppercase;
+        .feature-card {
+          background: hsl(var(--card) / 0.5);
+          backdrop-filter: blur(12px);
+          border: 1px solid hsl(var(--border) / 0.3);
+          border-radius: var(--radius-lg);
+          padding: 40px;
+          transition: var(--transition-bounce);
         }
 
-        .features-content h2 .highlight {
-          color: #f1e728;
-        }
-
-        .features-list {
-          list-style: none;
-          padding: 0;
-          margin: 0;
-        }
-
-        .feature-item {
-          padding: 25px 0;
-          border-bottom: 1px solid #333;
-          display: flex;
-          align-items: center;
-          gap: 20px;
+        .feature-card:hover {
+          transform: translateY(-8px);
+          box-shadow: var(--shadow-glow);
+          border-color: hsl(var(--color-purple-400) / 0.5);
         }
 
         .feature-icon {
-          width: 50px;
-          height: 50px;
-          background: #f1e728;
-          border-radius: 50%;
+          width: 60px;
+          height: 60px;
+          background: var(--gradient-hero);
+          border-radius: var(--radius);
           display: flex;
           align-items: center;
           justify-content: center;
-          font-size: 20px;
-          font-weight: bold;
-          color: #212121;
-          flex-shrink: 0;
+          margin-bottom: 20px;
         }
 
-        .feature-text h3 {
-          color: #fff;
+        .feature-title {
+          color: hsl(var(--foreground));
           font-family: "monument_extendedregular";
-          font-size: 18px;
-          margin: 0 0 8px;
+          font-size: 20px;
+          margin: 0 0 12px;
           text-transform: uppercase;
         }
 
-        .feature-text p {
-          color: #aaa;
+        .feature-description {
+          color: hsl(var(--foreground-secondary));
           font-family: "monument_extendedregular";
           font-size: 14px;
-          margin: 0;
           line-height: 1.6;
+          margin: 0;
         }
 
+        /* CTA Section */
         .cta-section {
           padding: 120px 30px;
-          background-color: #212121;
+          background: hsl(var(--color-neutral-950));
           position: relative;
           overflow: hidden;
           text-align: center;
@@ -694,7 +547,7 @@ const ImageGeneratorBanner: React.FC = () => {
           content: "";
           border-radius: 197.5px 0px;
           opacity: 0.6;
-          background: #f1e728;
+          background: var(--gradient-accent);
           filter: blur(180px);
           height: 60%;
           width: 80%;
@@ -711,16 +564,16 @@ const ImageGeneratorBanner: React.FC = () => {
         }
 
         .cta-title {
-          color: #fff;
+          color: hsl(var(--foreground));
           font-family: "Extenda Trial 30 Deca";
-          font-size: clamp(80px, 12vw, 160px);
-          line-height: 0.8;
+          font-size: clamp(60px, 10vw, 120px);
+          line-height: 0.9;
           margin: 0 0 30px;
           text-transform: uppercase;
         }
 
         .cta-subtitle {
-          color: #aaa;
+          color: hsl(var(--foreground-secondary));
           font-family: "monument_extendedregular";
           font-size: 18px;
           line-height: 1.6;
@@ -731,36 +584,32 @@ const ImageGeneratorBanner: React.FC = () => {
         }
 
         @media screen and (max-width: 1199px) {
-          .features-section,
-          .cta-section {
-            padding: 80px 20px;
-          }
-
-          .features-container {
-            gap: 40px;
-          }
+          .right-part { height: 400px; width: 400px; }
+          .right-part .d-flex { gap: 20px; }
+          .box { height: 118px; width: 118px; font-size: 12px; }
+          .left-part p { font-size: 14px; line-height: 1.8; width: 85%; }
+          .left-part h1 .text { height: 132px; }
         }
 
         @media screen and (max-width: 767px) {
-          .features-section,
-          .cta-section {
-            padding: 60px 16px;
-          }
-
-          .features-container {
-            grid-template-columns: 1fr;
-            gap: 30px;
-          }
+          .info-section { display: block; padding: 60px 16px; overflow: visible; min-height: auto; height: auto; }
+          .left-part { padding: 40px 16px 60px; overflow: visible; }
+          .right-part { height: 334px; width: 334px; margin: 0 auto; margin-right: auto; }
+          .left-part h1 .text { height: 88px; }
+          .left-part p { font-size: 12px; width: 96%; }
+          .box { height: 96px; width: 96px; font-size: 10px; }
+          .features-section, .cta-section { padding: 80px 16px; }
+          .features-container { grid-template-columns: 1fr; gap: 30px; }
         }
       `}</style>
       
-      <div className="image-gen-banner">
+      <div className="image-banner">
         <main>
-          <section className="hero-section">
-            <div className="hero-left">
+          <section className="info-section">
+            <div className="left-part">
               <h1>
                 <span className="d-flex">
-                  {['A', 'I', ' ', 'f', 'o', 'r'].map((char, index) => (
+                  {['w', 'e', ' ', 'e', 'm', 'p', 'o', 'w', 'e', 'r'].map((char, index) => (
                     <span key={index} className="char" style={{ animationDelay: `${index * 0.08}s` }}>
                       {char === ' ' ? '\u00A0' : char}
                     </span>
@@ -768,106 +617,113 @@ const ImageGeneratorBanner: React.FC = () => {
                 </span>
                 <span className="text">{currentText}</span>
               </h1>
-              <p>Transform your photos into NBA stars, professional headshots, and stunning artworks with AI</p>
-              <button onClick={() => navigate('/auth')} className="cta-button">
-                <span className="linktext">Start Creating</span>
-                <span className="arrow">
-                  <span></span>
-                </span>
-              </button>
+              <p>Transform your photos with AI magic. Turn ordinary moments into extraordinary memories.</p>
+              <div className="mt-8 flex gap-4">
+                <Button 
+                  onClick={() => navigate('/generator')}
+                  size="lg"
+                  className="gradient-hero text-white hover:opacity-90 transition-opacity"
+                >
+                  <Sparkles className="mr-2 h-5 w-5" />
+                  Start Creating
+                </Button>
+              </div>
             </div>
-            <div className="hero-right">
+            <div className="right-part">
               <div className="main-grid d-flex">
-                <div className="box">
-                  <span>NBA Player</span>
-                </div>
-                <div className="box">
-                  <div className="bg-img">
-                    <img src="https://images.unsplash.com/photo-1546519638-68e109498ffc?w=300&h=300&fit=crop" alt="Basketball" />
-                  </div>
-                </div>
-                <div className="box">
-                  <span>Professional</span>
-                </div>
-                <div className="box">
-                  <span>Enhance</span>
-                </div>
-                <div className="box">
-                  <div className="bg-img">
-                    <img src="https://images.unsplash.com/photo-1560179707-f14e90ef3623?w=300&h=300&fit=crop" alt="Art" />
-                  </div>
-                </div>
-                <div className="box">
-                  <div className="bg-img">
-                    <img src="https://images.unsplash.com/photo-1513104890138-7c749659a591?w=300&h=300&fit=crop" alt="Creative" />
-                  </div>
-                </div>
-                <div className="box">
-                  <span>Artistic</span>
-                </div>
-                <div className="box">
-                  <div className="bg-img">
-                    <img src="https://images.unsplash.com/photo-1544367567-0f2fcb009e0b?w=300&h=300&fit=crop" alt="Portrait" />
-                  </div>
-                </div>
+                {beforeAfterPairs.map((pair, idx) => {
+                  // Boxes with images: 2, 5, 6, 8 (indices 1, 4, 5, 7)
+                  const hasImage = [1, 4, 5, 7].includes(idx);
+                  const imageIndex = [1, 4, 5, 7].indexOf(idx);
+                  
+                  return (
+                    <div key={idx} className="box">
+                      {hasImage && imageIndex !== -1 ? (
+                        <div className="ba-container">
+                          <div className="before-img">
+                            <img 
+                              src={beforeAfterPairs[imageIndex].before} 
+                              alt={`Before ${beforeAfterPairs[imageIndex].label}`} 
+                            />
+                          </div>
+                          <div className="after-img">
+                            <img 
+                              src={beforeAfterPairs[imageIndex].after} 
+                              alt={`After ${beforeAfterPairs[imageIndex].label}`} 
+                            />
+                          </div>
+                          <div className="ba-divider"></div>
+                          <div className="ba-handle">⟷</div>
+                        </div>
+                      ) : (
+                        <span>{['AI Magic', 'Transform', 'Enhance', 'Create'][idx] || ''}</span>
+                      )}
+                    </div>
+                  );
+                })}
               </div>
             </div>
           </section>
 
+          {/* Features Section */}
           <section className="features-section">
             <div className="features-container">
-              <div className="features-content">
-                <h2>
-                  Endless <span className="highlight">Creative</span> Possibilities
-                </h2>
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <Sparkles className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="feature-title">AI-Powered</h3>
+                <p className="feature-description">
+                  Advanced artificial intelligence transforms your photos with stunning accuracy and detail
+                </p>
               </div>
-              <ul className="features-list">
-                <li className="feature-item">
-                  <div className="feature-icon">01</div>
-                  <div className="feature-text">
-                    <h3>AI-Powered</h3>
-                    <p>Advanced AI models create stunning transformations in seconds</p>
-                  </div>
-                </li>
-                <li className="feature-item">
-                  <div className="feature-icon">02</div>
-                  <div className="feature-text">
-                    <h3>Multiple Styles</h3>
-                    <p>From sports to professional photos to artistic paintings</p>
-                  </div>
-                </li>
-                <li className="feature-item">
-                  <div className="feature-icon">03</div>
-                  <div className="feature-text">
-                    <h3>Easy to Use</h3>
-                    <p>Upload, select style, and generate - it's that simple</p>
-                  </div>
-                </li>
-                <li className="feature-item">
-                  <div className="feature-icon">04</div>
-                  <div className="feature-text">
-                    <h3>Affordable</h3>
-                    <p>Just $1 per generation with flexible payment options</p>
-                  </div>
-                </li>
-              </ul>
+              
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <Zap className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="feature-title">Lightning Fast</h3>
+                <p className="feature-description">
+                  Generate professional-quality images in seconds, not hours. No waiting, just results
+                </p>
+              </div>
+              
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <Shield className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="feature-title">Secure & Private</h3>
+                <p className="feature-description">
+                  Your photos are encrypted and protected. We never share or sell your data
+                </p>
+              </div>
+              
+              <div className="feature-card">
+                <div className="feature-icon">
+                  <TrendingUp className="h-8 w-8 text-white" />
+                </div>
+                <h3 className="feature-title">Always Improving</h3>
+                <p className="feature-description">
+                  Our AI models are continuously updated with the latest technology for better results
+                </p>
+              </div>
             </div>
           </section>
 
+          {/* CTA Section */}
           <section className="cta-section">
             <div className="cta-container">
-              <h2 className="cta-title">Ready?</h2>
+              <h2 className="cta-title">Ready to Transform?</h2>
               <p className="cta-subtitle">
-                Join thousands creating amazing AI-powered image transformations. 
-                Get 3 free generations when you sign up.
+                Join thousands of creators who are already using AI to bring their vision to life.
+                Your journey starts here.
               </p>
-              <Button
+              <Button 
                 onClick={() => navigate('/auth')}
                 size="lg"
-                className="bg-[#f1e728] text-[#212121] hover:bg-[#f1e728]/90 text-lg px-8 py-6 font-bold"
+                className="gradient-accent text-white hover:opacity-90 transition-opacity text-lg px-8 py-6"
               >
-                <Sparkles className="mr-2 h-5 w-5" />
-                Start Now - 3 Free Generations
+                Get Started Free
               </Button>
             </div>
           </section>
