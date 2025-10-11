@@ -24,6 +24,8 @@ const categories = [
   { value: "graduation", label: "Graduation" },
   { value: "famous_location", label: "Famous Location" },
   { value: "with_celebrity", label: "With Celebrity" },
+  { value: "enhance_photo", label: "Enhance a Photo" },
+  { value: "professional_photo", label: "Make it Professional Photo" },
   { value: "custom", label: "Custom Prompt" },
 ];
 
@@ -182,7 +184,7 @@ const Generator = () => {
           <div className="mb-8 text-center">
             <h1 className="text-4xl font-bold mb-2">AI Image Generator</h1>
             <p className="text-muted-foreground">
-              You have <span className="text-primary font-bold">{credits}</span> credits remaining
+              You have <span className="text-primary font-bold">${credits}</span> remaining
             </p>
           </div>
 
@@ -254,7 +256,7 @@ const Generator = () => {
                   ) : (
                     <>
                       <Sparkles className="mr-2 h-5 w-5" />
-                      Generate (1 Credit)
+                      Generate ($1)
                     </>
                   )}
                 </Button>

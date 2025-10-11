@@ -33,21 +33,30 @@ const Auth = () => {
     setLoading(true);
 
     try {
-      const { error } = await supabase.auth.signUp({
+      const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
           data: { full_name: fullName },
-          emailRedirectTo: `${window.location.origin}/generator`
+          emailRedirectTo: `${window.location.origin}/`
         }
       });
 
       if (error) throw error;
 
-      toast({
-        title: "Success!",
-        description: "Account created successfully. You can now log in.",
-      });
+      // Auto sign in and redirect to home
+      if (data.session) {
+        toast({
+          title: "Success!",
+          description: "Account created successfully. Welcome!",
+        });
+        navigate("/");
+      } else {
+        toast({
+          title: "Success!",
+          description: "Account created successfully. You can now log in.",
+        });
+      }
       
       setEmail("");
       setPassword("");

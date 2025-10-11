@@ -163,15 +163,15 @@ const Profile = () => {
           {/* Credits Card */}
           <Card className="shadow-elegant">
             <CardHeader>
-              <CardTitle>Your Credits</CardTitle>
-              <CardDescription>Each generation costs 1 credit (100 points)</CardDescription>
+              <CardTitle>Your Balance</CardTitle>
+              <CardDescription>Each generation costs $1</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="text-center py-6">
                 <div className="text-6xl font-bold gradient-hero bg-clip-text text-transparent mb-2">
-                  {credits}
+                  ${credits}
                 </div>
-                <p className="text-muted-foreground">Credits Available</p>
+                <p className="text-muted-foreground">Available Balance</p>
               </div>
             </CardContent>
           </Card>
@@ -179,9 +179,9 @@ const Profile = () => {
           {/* Purchase Credits Card */}
           <Card className="shadow-elegant">
             <CardHeader>
-              <CardTitle>Purchase Credits</CardTitle>
+              <CardTitle>Add Funds</CardTitle>
               <CardDescription>
-                Pay 25 Birr to receive 100 credits (100 generations)
+                Pay 25 Birr to receive $100 (100 generations)
               </CardDescription>
             </CardHeader>
             <CardContent className="space-y-4">
