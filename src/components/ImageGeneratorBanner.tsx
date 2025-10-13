@@ -1116,6 +1116,8 @@ const ImageGeneratorBanner: React.FC = () => {
           line-height: 0.9;
           margin: 0 0 30px;
           text-transform: uppercase;
+          letter-spacing: 0.05em;
+          word-spacing: 0.2em;
         }
 
         .features-content h2 .highlight {
@@ -1201,6 +1203,8 @@ const ImageGeneratorBanner: React.FC = () => {
           line-height: 0.9;
           margin: 0 0 80px;
           text-transform: uppercase;
+          letter-spacing: 0.05em;
+          word-spacing: 0.2em;
         }
 
         .testimonials-grid {
@@ -1297,6 +1301,8 @@ const ImageGeneratorBanner: React.FC = () => {
           line-height: 0.8;
           margin: 0 0 30px;
           text-transform: uppercase;
+          letter-spacing: 0.05em;
+          word-spacing: 0.2em;
         }
 
         .cta-subtitle {
