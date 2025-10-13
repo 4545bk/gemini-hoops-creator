@@ -213,14 +213,43 @@ const Profile = () => {
                 </div>
 
                 <div>
-                  <Label htmlFor="receipt" className="text-white text-base mb-3 block">Upload Receipt</Label>
-                  <Input
-                    id="receipt"
-                    type="file"
-                    accept="image/*"
-                    onChange={(e) => setReceiptFile(e.target.files?.[0] || null)}
-                    className="cursor-pointer bg-[#2a2a2a] border-[#444] text-white file:bg-[#f1e728] file:text-[#212121] file:border-0 file:font-bold file:px-4 file:py-2 file:rounded-md hover:file:bg-[#e5db20]"
-                  />
+                  <Label htmlFor="receipt" className="text-white text-lg mb-2 block font-semibold">Upload Receipt</Label>
+                  <p className="text-gray-400 text-sm mb-4">Polish, perfect and enhance</p>
+                  
+                  <div className="relative">
+                    <div className="border-2 border-dashed border-[#444] rounded-xl p-8 bg-[#2a2a2a] hover:border-[#f1e728] transition-colors">
+                      <div className="flex flex-col items-center justify-center text-center">
+                        <div className="w-16 h-16 mb-4 rounded-full bg-[#333] flex items-center justify-center">
+                          <Upload className="w-8 h-8 text-[#f1e728]" />
+                        </div>
+                        
+                        <p className="text-white text-base mb-1">Drag your file here</p>
+                        <p className="text-gray-400 text-sm mb-4">or click to browse</p>
+                        
+                        <Input
+                          id="receipt"
+                          type="file"
+                          accept="image/*"
+                          onChange={(e) => setReceiptFile(e.target.files?.[0] || null)}
+                          className="absolute inset-0 w-full h-full opacity-0 cursor-pointer"
+                        />
+                        
+                        <div className="flex items-center gap-2 text-sm">
+                          <span className="px-3 py-1.5 bg-[#3a3a3a] text-white rounded border border-[#555] text-xs">Choose file</span>
+                          <span className="text-gray-400 text-xs">{receiptFile ? receiptFile.name : 'No file chosen'}</span>
+                        </div>
+                      </div>
+                      
+                      <div className="mt-4 pt-4 border-t border-[#333]">
+                        <p className="text-xs text-gray-400">
+                          <span className="text-[#6b9eff]">Supported formats: PNG, JPG, PDF, MP4</span>
+                        </p>
+                        <p className="text-xs text-gray-400 mt-1">
+                          Maximum Size: <span className="text-[#6b9eff]">25MB</span>
+                        </p>
+                      </div>
+                    </div>
+                  </div>
                 </div>
 
                 <Button

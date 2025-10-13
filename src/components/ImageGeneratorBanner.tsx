@@ -1117,7 +1117,7 @@ const ImageGeneratorBanner: React.FC = () => {
           margin: 0 0 30px;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          word-spacing: 0.2em;
+          word-spacing: 0.4em;
         }
 
         .features-content h2 .highlight {
@@ -1204,7 +1204,7 @@ const ImageGeneratorBanner: React.FC = () => {
           margin: 0 0 80px;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          word-spacing: 0.2em;
+          word-spacing: 0.4em;
         }
 
         .testimonials-grid {
@@ -1302,7 +1302,7 @@ const ImageGeneratorBanner: React.FC = () => {
           margin: 0 0 30px;
           text-transform: uppercase;
           letter-spacing: 0.05em;
-          word-spacing: 0.2em;
+          word-spacing: 0.4em;
         }
 
         .cta-subtitle {
