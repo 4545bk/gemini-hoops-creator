@@ -83,7 +83,7 @@ Include `.env.example` in the repo showing what variables are needed (without re
 
 (Add more specific features: e.g. “import SVG”, “download PNG”, “undo/redo”, etc.)
 
----
+----
 
 ## 🙋‍♂️ How to Contribute
 
@@ -95,7 +95,7 @@ Include `.env.example` in the repo showing what variables are needed (without re
 
 Make sure your code is well-documented, and include tests or UI screenshots where appropriate.
 
----
+----
 
 ## 🧪 Testing & Quality (if any)
 
