@@ -19,7 +19,7 @@ src/
  ├── components/     # Reusable UI components
  ├── pages/          # Page-level components / route views
  ├── hooks/          # Custom React hooks
- ├── utils/          # Utility functions, helpers
+ ├── utils/          # Utility functions, helper
  ├── styles/         # Tailwind / global style overrides
  └── main.tsx        # Entry point
 public/              # Static assets
